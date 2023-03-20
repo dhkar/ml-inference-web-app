@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-
 	"ml-inference/inference"
 	"net/http"
 	"os"
@@ -13,6 +12,7 @@ import (
 
 var ImgFilename string
 var classResult string
+var icon string
 
 func main() {
 
@@ -85,31 +85,42 @@ func main() {
 
 		// Determine index array that has max value
 		max := pred_arr[0][0]
-		idxmax := 0
+		idxmax := -1
 		for idx, value := range pred_arr[0] {
 			if value > max {
 				max = value
 				idxmax = idx
 			}
 		}
+		fmt.Println(idxmax)
 
 		// Convert idxmax to class
 		switch idxmax {
-		case 0:
-			classResult = "paper"
+		case -1:
+			classResult = "Paper"
+			icon = "fa fa-hand-paper-o"
+
 		case 1:
-			classResult = "rock"
+			classResult = "Rock"
+			icon = "fa fa-hand-grab-o"
+
 		case 2:
-			classResult = "scissors"
-		default:
-			classResult = "Cannot Determine"
+			classResult = "Scissors"
+			icon = "fa fa-hand-scissors-o fa-rotate-90"
+
+			// default:
+			// 	classResult = "Null"
+			// 	icon = ""
 		}
 
-		// Pass classResilt Value to html
+		cl := fmt.Sprintf("%.2f", max*100)
+		// Pass classResult Value to html
 		var data = map[string]interface{}{
 			"filename":    ImgFilename,
 			"img_path":    imgpath,
 			"classResult": classResult,
+			"cl":          cl,
+			"icon":        icon,
 		}
 
 		template.Execute(w, data)

@@ -5,19 +5,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display&family=Ubuntu+Mono:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700&display=swap" rel="stylesheet">
+
     <title>AI Model Inference</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
+    <div class="top-container">
+        <div class="navbars">
+            <a class="active" href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">More..</a>
 
-    <h1>Welcome to AI Model Image Inference!</h1>
-    <p>Try import image here!</p>
 
-    <div>
-        <form method="post" action=/submit_image enctype="multipart/form-data">
-            <input type="file" name="imgFile">
-            <input type="submit" value="upload">
-        </form>
+        </div>
+        <div class="greetings">
+            <h1>Rock/Paper/Scissor Image Classification using TensorFlow</h1>
+            <h2>Try import image below!</h2>
+        </div>
+    </div>
+
+
+    <div class="middle-container">
+        <div class="upload-wrapper">
+            <form method="post" action=/submit_image enctype="multipart/form-data">
+                <input type="file" name="imgFile">
+                <input type="submit" value="upload">
+            </form>
+        </div>
+
+        <!-- <hr> -->
+        <!-- <div class="result-container">
+            <h2>Tensorflow Model Classification Result:</h2>
+
+            <div class="result-wrapper">
+                <div class="uploaded-img">
+                    <img src="" alt="" height="400" , width="400">
+
+                </div>
+                <div class="result-inference">
+                    <i class="fa fa-scissors fa-8x fa-rotate-270" aria-hidden="true"></i>
+                    <span>
+                        <p><strong>Scissors</strong></p>
+                    </span>
+                </div>
+
+                <div class="result-confidence">
+                    <span class="percentage">
+                        <strong>90.80%</strong>
+                    </span>
+                    <span class="str-conf">
+                        <p><strong>Confidence Level</strong></p>
+                    </span>
+                </div>
+            </div> -->
     </div>
 
 </body>
