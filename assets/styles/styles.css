@@ -9,6 +9,8 @@ h1 {
     margin: 0px;
 }
 
+
+
 .top-container {
     text-align: center;
     /* background-color: #62B6B7; */
@@ -72,7 +74,8 @@ h1 {
 }
 
 .upload-wrapper {
-
+    display: flex;
+    justify-content: center;
     width: 500px;
     height: 300px;
     /* position: relative; */
@@ -81,10 +84,63 @@ h1 {
     border-radius: 25px;
 }
 
+.upload-wrapper i {
+    font-size: 50px;
+}
+
+.upload-wrapper section {
+    display: flex;
+    border-style: dashed;
+    flex-wrap: wrap;
+    flex-direction: column;
+    word-wrap: break-word;
+    justify-content: center;
+    align-items: center;
+    /* border-style: solid; */
+    width: 490px;
+    height: 270px;
+    border-width: 5px;
+    margin: 10px;
+    border-color: #729b84;
+    color: #729b84;
+    border-radius: 25px;
+    /* 25px top, 10px right, 4px bottom and 35px left */
+}
+
+.upload-wrapper section:hover {
+    display: flex;
+
+    border-style: dashed;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    justify-content: center;
+    align-items: center;
+
+    /* border-style: solid; */
+    width: 490px;
+    height: 270px;
+    border-width: 5px;
+    margin: 10px;
+    border-color: #3A98B9;
+    color: #3A98B9;
+
+    border-radius: 25px;
+    /* 25px top, 10px right, 4px bottom and 35px left */
+}
+
+.upload-area p {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* 
 .upload-wrapper form {
     display: flex;
     justify-content: center;
-}
+} */
+
 
 
 

@@ -13,13 +13,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display&family=Ubuntu+Mono:wght@700&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap" rel="stylesheet">
 
     <title>AI Model Inference</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
+
 
 <body>
     <div class="top-container">
@@ -32,46 +35,111 @@
         </div>
         <div class="greetings">
             <h1>Rock/Paper/Scissor Image Classification using TensorFlow</h1>
-            <h2>Try import image below!</h2>
+            <h2 style="margin-top: 20px;">Try import image below!</h2>
         </div>
     </div>
 
 
     <div class="middle-container">
         <div class="upload-wrapper">
-            <form method="post" action=/submit_image enctype="multipart/form-data">
-                <input type="file" name="imgFile">
-                <input type="submit" value="upload">
-            </form>
+            <!-- <form method="post" action=/submit_image enctype="multipart/form-data">
+                <input type="file" name="input-image">
+                <input class="btn" type="submit" value="upload">
+            </form> -->
+            <section class="upload-area">
+                <input type="file" name="input-image" hidden>
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag File Here, or Click Me!</p>
+            </section>
         </div>
 
-        <!-- <hr> -->
-        <!-- <div class="result-container">
-            <h2>Tensorflow Model Classification Result:</h2>
-
-            <div class="result-wrapper">
-                <div class="uploaded-img">
-                    <img src="" alt="" height="400" , width="400">
-
-                </div>
-                <div class="result-inference">
-                    <i class="fa fa-scissors fa-8x fa-rotate-270" aria-hidden="true"></i>
-                    <span>
-                        <p><strong>Scissors</strong></p>
-                    </span>
-                </div>
-
-                <div class="result-confidence">
-                    <span class="percentage">
-                        <strong>90.80%</strong>
-                    </span>
-                    <span class="str-conf">
-                        <p><strong>Confidence Level</strong></p>
-                    </span>
-                </div>
-            </div> -->
     </div>
 
 </body>
 
 </html>
+
+<script>
+    // Seek For Upload Area by ClassName
+    const upload_area = document.getElementsByClassName('upload-area');
+
+    // Seek for "Input type="file" from uploaded Area"
+    let input = document.querySelector("input");
+
+    // Image File
+    let _file;
+
+    // FormData class for convert image file into multipart encoded
+    let form = new FormData();
+
+    // This will upload the file after having read it
+    const upload = (file) => {
+        fetch('/submit_image', { // Your POST endpoint
+            method: 'POST',
+            headers: {
+                // Empty, FormData forbids for explicitly describe "content-type header"
+                // for multipart encoded
+            },
+            redirect: 'follow',
+            body: file // FormData class
+        }).then(
+
+            response => {
+                console.log(response)
+                return response.text()
+            } // First Promise, gather response
+        ).then(
+            html => {
+                // Initialize the DOM parser
+                var parser = new DOMParser();
+
+                // Parse the text
+                var doc = parser.parseFromString(html, "text/html");
+
+                // Modify Body Inner HTML with the response
+                var newPage = doc.querySelector('body').innerHTML;
+                document.getElementsByTagName('body')[0].innerHTML = newPage;
+            }
+        ) // Handle return Response, modify DOM, Second Promise
+
+            .catch(
+                error => console.log(error) // Handle the error response object
+            );
+    };
+
+
+
+    let myPromise = new Promise(function (resolve, reject) {
+        // Click EventListener
+        upload_area[0].addEventListener("click", function (event) {
+
+            console.log("clicked"); // debugging purposes
+            // Click for Opening File (Browse)
+            input.click();
+            input.onchange = () => resolve([...input.files]);
+
+        });
+
+        upload_area[0].addEventListener("drop", (event) => {
+            // event.preventDefault();
+
+            file = event.dataTransfer.files[0];
+            input.onchange = () => resolve(file);
+            // viewfile();
+        });
+    });
+
+    myPromise.then(
+        function (value) {
+            _file = value[0];
+            form.append("input-image", _file)
+            console.log(form);
+
+            upload(form);
+            console.log("berhasil");
+
+        },
+        function (error) { console.log("Cobalagi") }
+    );
+
+</script>

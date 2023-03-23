@@ -36,7 +36,7 @@ func main() {
 
 		// Parse image File from form to imgFile variable
 		r.ParseMultipartForm(10 << 20)
-		imgFile, handler, error := r.FormFile("imgFile")
+		imgFile, handler, error := r.FormFile("input-image")
 
 		// Error Handler
 		if error != nil {

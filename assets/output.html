@@ -68,17 +68,22 @@
         </div>
         <div class="greetings">
             <h1>Rock/Paper/Scissor Image Classification using TensorFlow</h1>
-            <h2>Try import image below!</h2>
+            <h2 style="margin-top: 20px;">Try import image below!</h2>
         </div>
     </div>
 
 
     <div class="middle-container">
         <div class="upload-wrapper">
-            <form method="post" action=/submit_image enctype="multipart/form-data">
+            <!-- <form method="post" action=/submit_image enctype="multipart/form-data">
                 <input type="file" name="imgFile">
                 <input type="submit" value="upload">
-            </form>
+            </form> -->
+            <section class="upload-area">
+                <input type="file" name="input-image" hidden>
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag File Here, or Click Me!</p>
+            </section>
         </div>
 
         <!-- <hr> -->
